@@ -12,3 +12,4 @@ The following are things this project hopes to achieve along the line:
 - [ ] Unit Tests
 - [ ] Spring Boot Starter for the client built above
 - [ ] Build and Publish as a library on Maven Central
+- [ ] Demo of regular POJO and Spring implementation
