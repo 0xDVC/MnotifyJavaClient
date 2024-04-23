@@ -4,20 +4,19 @@ import okhttp3.*;
 
 import java.io.IOException;
 
-public class Message {
+public class Group {
     private String apiKey;
-    private final String URL = "/template";
+    private final String URL = "/group";
     Auth auth;
     private final OkHttpClient client;
 
 
-    public Message() {
+    public Group() {
         this.client = new OkHttpClient();
         this.apiKey = auth.apiKey();
     }
 
-
-    public String getAllMessageTemplates() throws IOException {
+    public String getAllGroups() throws IOException {
         Request request = new Request.Builder()
                 .url(auth.BASE_URL() + URL + "?key=" + auth.apiKey())
                 .addHeader("Content-Type", "application/json")
@@ -32,8 +31,7 @@ public class Message {
         }
     }
 
-
-    public String getMessageTemplate(int id) throws IOException {
+    public String getGroup(int id) throws IOException {
         Request request = new Request.Builder()
                 .url(auth.BASE_URL() + URL + "/" + id + "?key=" + auth.apiKey())
                 .addHeader("Content-Type", "application/json")
@@ -46,13 +44,11 @@ public class Message {
                 throw new IOException("Unexpected response code: " + response.code());
             }
         }
-
     }
 
-    public String addMessageTemplate(String title, String content) throws IOException {
+    public String addGroup(String groupName) throws IOException {
         RequestBody formBody = new FormBody.Builder()
-                .add("title", title)
-                .add("content", content)
+                .add("group_name", groupName)
                 .build();
 
         Request request = new Request.Builder()
@@ -70,10 +66,9 @@ public class Message {
         }
     }
 
-    public String updateMessageTemplate(int id, String title, String content) throws IOException{
+    public String updateGroup(int id, String groupName) throws IOException {
         RequestBody requestBody = new FormBody.Builder()
-                .add("title", title)
-                .add("content", content)
+                .add("group_name", groupName)
                 .add("id", String.valueOf(id))
                 .build();
 
@@ -91,7 +86,7 @@ public class Message {
         }
     }
 
-    public String deleteMessageTemplate(int id) throws IOException{
+    public String deleteGroup(int id) throws IOException{
         Request request = new Request.Builder()
                 .url(auth.BASE_URL() + URL + "/" + id + "?key=" + auth.apiKey())
                 .delete()
@@ -106,6 +101,4 @@ public class Message {
             }
         }
     }
-
-
 }
