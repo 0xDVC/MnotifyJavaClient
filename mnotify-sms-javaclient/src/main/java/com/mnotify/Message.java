@@ -1,31 +1,36 @@
 package com.mnotify;
 
 import okhttp3.*;
-
 import java.io.IOException;
+import com.mnotify.constants.URLDefinitions;
+
+/**
+ * The Message class provides methods to interact with the message templates API.
+ * It allows users to retrieve, add, update, and delete message templates.
+ *
+ * @author Neil Ohene on 2024-04-23
+ */
 
 public class Message {
     private String apiKey;
-    private final String URL = "/template";
-    Auth auth;
+    private final String URL = URLDefinitions.MESSAGE_ENDPOINT;
     private final OkHttpClient client;
 
 
-    public Message() {
+    public Message(String apiKey) {
         this.client = new OkHttpClient();
-        this.apiKey = auth.apiKey();
+        this.apiKey = apiKey;
     }
 
-
-    public String getAllMessageTemplates() throws IOException {
+    public ResponseBody getAllMessageTemplates() throws IOException {
         Request request = new Request.Builder()
-                .url(auth.BASE_URL() + URL + "?key=" + auth.apiKey())
+                .url(URL + "?key=" + apiKey)
                 .addHeader("Content-Type", "application/json")
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                return response.body().string();
+                return response.body();
             } else {
                 throw new IOException("Unexpected response code: " + response.code());
             }
@@ -33,15 +38,15 @@ public class Message {
     }
 
 
-    public String getMessageTemplate(int id) throws IOException {
+    public ResponseBody getMessageTemplate(int id) throws IOException {
         Request request = new Request.Builder()
-                .url(auth.BASE_URL() + URL + "/" + id + "?key=" + auth.apiKey())
+                .url(URL + "/" + id + "?key=" + apiKey)
                 .addHeader("Content-Type", "application/json")
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                return response.body().string();
+                return response.body();
             } else {
                 throw new IOException("Unexpected response code: " + response.code());
             }
@@ -49,28 +54,28 @@ public class Message {
 
     }
 
-    public String addMessageTemplate(String title, String content) throws IOException {
+    public ResponseBody addMessageTemplate(String title, String content) throws IOException {
         RequestBody formBody = new FormBody.Builder()
                 .add("title", title)
                 .add("content", content)
                 .build();
 
         Request request = new Request.Builder()
-                .url(auth.BASE_URL() + URL + "?key=" + auth.apiKey())
+                .url(URL + "?key=" + apiKey)
                 .post(formBody)
                 .addHeader("Content-Type", "application/json")
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                return response.body().string();
+                return response.body();
             } else {
                 throw new IOException("Unexpected response code: " + response.code());
             }
         }
     }
 
-    public String updateMessageTemplate(int id, String title, String content) throws IOException{
+    public ResponseBody updateMessageTemplate(int id, String title, String content) throws IOException{
         RequestBody requestBody = new FormBody.Builder()
                 .add("title", title)
                 .add("content", content)
@@ -78,34 +83,33 @@ public class Message {
                 .build();
 
         Request request = new Request.Builder()
-                .url(auth.BASE_URL() + URL + "/" + id + "?key=" + auth.apiKey())
+                .url(URL + "/" + id + "?key=" + apiKey)
                 .put(requestBody)
                 .addHeader("Content-Type", "application/json")
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                return response.body().string();
+                return response.body();
             } else {
                 throw new IOException("Unexpected response code: " + response.code());
             }
         }
     }
 
-    public String deleteMessageTemplate(int id) throws IOException{
+    public ResponseBody deleteMessageTemplate(int id) throws IOException{
         Request request = new Request.Builder()
-                .url(auth.BASE_URL() + URL + "/" + id + "?key=" + auth.apiKey())
+                .url(URL + "/" + id + "?key=" + apiKey)
                 .delete()
                 .addHeader("Content-Type", "application/json")
                 .build();
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
-                return response.body().string();
+                return response.body();
             } else {
                 throw new IOException("Unexpected response code: " + response.code());
             }
         }
     }
-
 
 }
