@@ -18,7 +18,7 @@ public class Message {
 
 
     public Message(String apiKey) {
-        this.client = new OkHttpClient();
+        client = new OkHttpClient();
         this.apiKey = apiKey;
     }
 

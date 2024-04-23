@@ -1,8 +1,8 @@
 package com.mnotify.constants;
 
 /**
- * The Message class provides methods to interact with the message templates API.
- * It allows users to retrieve, add, update, and delete message templates.
+ * The URLDefinitions class provides constants for defining API endpoints used in the MNotify service.
+ * It includes endpoints for interacting with various functionalities such as contacts, groups, messages, etc.
  *
  * @author Neil Ohene on 2024-04-23
  */

@@ -18,7 +18,7 @@ public class Group {
 
 
     public Group(String apiKey) {
-        this.client = new OkHttpClient();
+        client = new OkHttpClient();
         this.apiKey = apiKey;
     }
 

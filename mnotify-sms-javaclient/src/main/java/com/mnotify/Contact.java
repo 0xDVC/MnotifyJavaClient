@@ -17,7 +17,7 @@ public class Contact {
 
 
     public Contact(String apiKey) {
-        this.client = new OkHttpClient();
+        client = new OkHttpClient();
         this.apiKey = apiKey;
     }
 
