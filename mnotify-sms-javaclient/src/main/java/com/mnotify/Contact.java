@@ -1,8 +1,9 @@
 package com.mnotify;
 
-import okhttp3.*;
+import com.mnotify.common.*;
 import java.io.IOException;
 import com.mnotify.constants.URLDefinitions;
+import okhttp3.*;
 
 /**
  * The Contact class provides methods to interact with the contacts API.
@@ -13,56 +14,26 @@ import com.mnotify.constants.URLDefinitions;
 public class Contact {
     private String apiKey;
     private final String URL = URLDefinitions.CONTACT_ENDPOINT;
-    private final OkHttpClient client;
-
 
     public Contact(String apiKey) {
-        client = new OkHttpClient();
         this.apiKey = apiKey;
     }
 
     public ResponseBody getAllContacts() throws IOException {
-        Request request = new Request.Builder()
-                .url(URL + "?key=" + apiKey)
-                .addHeader("Content-Type", "application/json")
-                .build();
+        Request request = RequestBuilder.buildRequest(URL, apiKey);
 
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                return response.body();
-            } else {
-                throw new IOException("Unexpected response code: " + response.code());
-            }
-        }
+        return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody getContact(int id) throws IOException {
-        Request request = new Request.Builder()
-                .url(URL + "/" + id + "?key=" + apiKey)
-                .addHeader("Content-Type", "application/json")
-                .build();
+        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
 
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                return response.body();
-            } else {
-                throw new IOException("Unexpected response code: " + response.code());
-            }
-        }
+        return RequestExecutor.executeRequest(request);
     }
     public ResponseBody getGroupContacts(int id) throws IOException {
-        Request request = new Request.Builder()
-                .url(URL + "/group/" + id + "?key=" + apiKey)
-                .addHeader("Content-Type", "application/json")
-                .build();
+        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
 
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                return response.body();
-            } else {
-                throw new IOException("Unexpected response code: " + response.code());
-            }
-        }
+        return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody addContact( int groupId, String phone, String title, String firstName, String lastName, String email, String dob) throws IOException {
@@ -75,19 +46,9 @@ public class Contact {
                 .add("dob", dob)
                 .build();
 
-        Request request = new Request.Builder()
-                .url(URL + groupId + "?key=" + apiKey)
-                .post(formBody)
-                .addHeader("Content-Type", "application/json")
-                .build();
+        Request request = RequestBuilder.buildRequest(URL, groupId, apiKey);
 
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                return response.body();
-            } else {
-                throw new IOException("Unexpected response code: " + response.code());
-            }
-        }
+        return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody updateContact(int id, int groupId, String phone, String title, String firstName, String lastName, String email, String dob) throws IOException {
@@ -102,34 +63,15 @@ public class Contact {
                 .add("dob", dob)
                 .build();
 
-        Request request = new Request.Builder()
-                .url(URL + "/" + id + "?key=" + apiKey)
-                .put(requestBody)
-                .addHeader("Content-Type", "application/json")
-                .build();
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                return response.body();
-            } else {
-                throw new IOException("Unexpected response code: " + response.code());
-            }
-        }
+        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
+
+        return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody deleteContact(int id, int groupId) throws IOException{
-        Request request = new Request.Builder()
-                .url(URL + "/" + id + "/" + groupId + "?key=" + apiKey)
-                .delete()
-                .addHeader("Content-Type", "application/json")
-                .build();
+        Request request = RequestBuilder.buildRequest(URL, id, groupId, apiKey);
 
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful()) {
-                return response.body();
-            } else {
-                throw new IOException("Unexpected response code: " + response.code());
-            }
-        }
+        return RequestExecutor.executeRequest(request);
     }
 
 }

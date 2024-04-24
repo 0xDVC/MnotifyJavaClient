@@ -1,7 +1,6 @@
 package com.mnotify;
 
-import com.mnotify.common.RequestBuilder;
-import com.mnotify.common.RequestExecutor;
+import com.mnotify.common.*;
 import java.io.IOException;
 import com.mnotify.constants.URLDefinitions;
 import okhttp3.FormBody;
@@ -10,36 +9,39 @@ import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
 /**
- * The Group class provides methods to interact with the contact groups API.
- * It allows users to retrieve, add, update, and delete contact groups.
+ * The MessageTemplate class provides methods to interact with the message templates API.
+ * It allows users to retrieve, add, update, and delete message templates.
  *
  * @author Neil Ohene on 2024-04-23
  */
 
-public class Group {
+public class MessageTemplate {
     private String apiKey;
-    private final String URL = URLDefinitions.GROUP_ENDPOINT;
+    private final String URL = URLDefinitions.MESSAGE_ENDPOINT;
 
 
-    public Group(String apiKey) {
+    public MessageTemplate(String apiKey) {
         this.apiKey = apiKey;
     }
 
-    public ResponseBody getAllGroups() throws IOException {
+    public ResponseBody getAllMessageTemplates() throws IOException {
         Request request = RequestBuilder.buildRequest(URL, apiKey);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody getGroup(int id) throws IOException {
+
+    public ResponseBody getMessageTemplate(int id) throws IOException {
         Request request = RequestBuilder.buildRequest(URL, id, apiKey);
 
         return RequestExecutor.executeRequest(request);
+
     }
 
-    public ResponseBody addGroup(String groupName) throws IOException {
+    public ResponseBody addMessageTemplate(String title, String content) throws IOException {
         RequestBody formBody = new FormBody.Builder()
-                .add("group_name", groupName)
+                .add("title", title)
+                .add("content", content)
                 .build();
 
         Request request = RequestBuilder.buildRequest(URL, apiKey);
@@ -47,20 +49,21 @@ public class Group {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateGroup(int id, String groupName) throws IOException {
+    public ResponseBody updateMessageTemplate(int id, String title, String content) throws IOException{
         RequestBody requestBody = new FormBody.Builder()
-                .add("group_name", groupName)
+                .add("title", title)
+                .add("content", content)
                 .add("id", String.valueOf(id))
                 .build();
 
         Request request = RequestBuilder.buildRequest(URL, id, apiKey);
-
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody deleteGroup(int id) throws IOException{
+    public ResponseBody deleteMessageTemplate(int id) throws IOException{
         Request request = RequestBuilder.buildRequest(URL, id, apiKey);
 
         return RequestExecutor.executeRequest(request);
     }
+
 }
