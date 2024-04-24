@@ -44,7 +44,7 @@ public class MessageTemplate {
                 .add("content", content)
                 .build();
 
-        Request request = RequestBuilder.buildRequest(URL, apiKey);
+        Request request = RequestBuilder.buildRequest(URL, formBody, apiKey);
 
         return RequestExecutor.executeRequest(request);
     }
@@ -56,12 +56,12 @@ public class MessageTemplate {
                 .add("id", String.valueOf(id))
                 .build();
 
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
+        Request request = RequestBuilder.buildRequestWithID(URL, id, requestBody, apiKey);
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody deleteMessageTemplate(int id) throws IOException{
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
+        Request request = RequestBuilder.deleteRequest(URL, id, apiKey);
 
         return RequestExecutor.executeRequest(request);
     }
