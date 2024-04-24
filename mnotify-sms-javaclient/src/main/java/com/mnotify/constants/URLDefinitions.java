@@ -3,8 +3,6 @@ package com.mnotify.constants;
 /**
  * The URLDefinitions class provides constants for defining API endpoints used in the MNotify service.
  * It includes endpoints for interacting with various functionalities such as contacts, groups, messages, etc.
- *
- * @author Neil Ohene on 2024-04-23
  */
 
 public class URLDefinitions {

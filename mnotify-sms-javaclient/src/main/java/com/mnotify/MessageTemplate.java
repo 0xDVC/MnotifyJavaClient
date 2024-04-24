@@ -14,26 +14,22 @@ import okhttp3.ResponseBody;
  */
 
 public class MessageTemplate {
-    private final String apiKey;
-    private final String URL = URLDefinitions.MESSAGE_ENDPOINT;
+    RequestBuilder builder;
 
 
-    public MessageTemplate(String apiKey) {
-        this.apiKey = apiKey;
+    public MessageTemplate(String API_KEY) {
+        builder = new RequestBuilder(API_KEY, URLDefinitions.MESSAGE_ENDPOINT);
     }
 
     public ResponseBody getAllMessageTemplates() throws IOException {
-        Request request = RequestBuilder.buildRequest(URL, apiKey);
-
+        Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
 
     public ResponseBody getMessageTemplate(int id) throws IOException {
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
-
+        Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
-
     }
 
     public ResponseBody addMessageTemplate(String title, String content) throws IOException {
@@ -42,8 +38,7 @@ public class MessageTemplate {
                 .add("content", content)
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URL, requestBody, apiKey);
-
+        Request request = builder.buildRequestWithBody(requestBody);
         return RequestExecutor.executeRequest(request);
     }
 
@@ -54,12 +49,12 @@ public class MessageTemplate {
                 .add("id", String.valueOf(id))
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URL, id, requestBody, apiKey);
+        Request request = builder.buildRequestWithBody(id, requestBody);
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody deleteMessageTemplate(int id) throws IOException{
-        Request request = RequestBuilder.deleteRequest(URL, id, apiKey);
+        Request request = builder.deleteRequest(id);
         return RequestExecutor.executeRequest(request);
     }
 

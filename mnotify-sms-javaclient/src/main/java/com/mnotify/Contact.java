@@ -10,24 +10,22 @@ import okhttp3.*;
  * It allows users to retrieve, add, update, and delete contacts and contact groups.
  */
 public class Contact {
-    private final String apiKey;
-    private final String URL = URLDefinitions.CONTACT_ENDPOINT;
-
-    public Contact(String apiKey) {
-        this.apiKey = apiKey;
+    RequestBuilder builder;
+    public Contact(String API_KEY) {
+        builder = new RequestBuilder(API_KEY, URLDefinitions.CONTACT_ENDPOINT);
     }
 
     public ResponseBody getAllContacts() throws IOException {
-        Request request = RequestBuilder.buildRequest(URL, apiKey);
+        Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody getContact(int id) throws IOException {
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
+        Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }
     public ResponseBody getGroupContacts(int id) throws IOException {
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
+        Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }
 
@@ -41,7 +39,7 @@ public class Contact {
                 .add("dob", dob)
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URL, groupId, requestBody, apiKey);
+        Request request = builder.buildRequestWithBody(groupId, requestBody);
         return RequestExecutor.executeRequest(request);
     }
 
@@ -57,13 +55,12 @@ public class Contact {
                 .add("dob", dob)
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URL, id, requestBody, apiKey);
+        Request request = builder.buildRequestWithBody(id, requestBody);
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody deleteContact(int id, int groupId) throws IOException{
-        Request request = RequestBuilder.buildRequest(URL, id, groupId, apiKey);
-
+        Request request = builder.deleteRequest(id, groupId);
         return RequestExecutor.executeRequest(request);
     }
 

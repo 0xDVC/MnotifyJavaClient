@@ -20,10 +20,10 @@ import java.util.stream.Collectors;
 **/
 
 public class Campaign {
-    private final String apiKey;
 
-    public Campaign(String apiKey) {
-        this.apiKey = apiKey;
+    RequestBuilder builder;
+    public Campaign(String API_KEY) {
+        builder = new RequestBuilder(API_KEY);
     }
 
     public ResponseBody quickBulkSMS(List<String> recipients, String sender, String message, boolean isSchedule, LocalDateTime scheduledDate) throws IOException {
@@ -35,8 +35,8 @@ public class Campaign {
                 .add("scheduled_date", String.valueOf(scheduledDate))
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URLDefinitions.QUICK_BULK_SMS, requestBody, apiKey);
-
+        builder.URL = URLDefinitions.QUICK_BULK_SMS;
+        Request request = builder.buildRequestWithBody(requestBody);
         return RequestExecutor.executeRequest(request);
     }
 
@@ -51,13 +51,13 @@ public class Campaign {
                 .add("scheduled_date", String.valueOf(scheduledDate))
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URLDefinitions.QUICK_BULK_SMS, requestBody, apiKey);
-
+        Request request = builder.buildRequestWithBody(requestBody);
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody scheduledSMS() throws IOException {
-        Request request = RequestBuilder.buildRequest(URLDefinitions.SCHEDULED_SMS, apiKey);
+        builder.URL = URLDefinitions.SCHEDULED_SMS;
+        Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
@@ -68,7 +68,7 @@ public class Campaign {
                 .add("scheduled_date", String.valueOf(scheduledDateTime))
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URLDefinitions.SCHEDULED_SMS, id, requestBody, apiKey);
+        Request request = builder.buildRequestWithBody(id, requestBody);
         return RequestExecutor.executeRequest(request);
     }
 

@@ -15,22 +15,20 @@ import okhttp3.ResponseBody;
  */
 
 public class Group {
-    private final String apiKey;
-    private final String URL = URLDefinitions.GROUP_ENDPOINT;
 
+    RequestBuilder builder;
 
-    public Group(String apiKey) {
-        this.apiKey = apiKey;
+    public Group(String API_KEY) {
+        builder = new RequestBuilder(API_KEY, URLDefinitions.GROUP_ENDPOINT);
     }
 
     public ResponseBody getAllGroups() throws IOException {
-        Request request = RequestBuilder.buildRequest(URL, apiKey);
-
+        Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody getGroup(int id) throws IOException {
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
+        Request request = builder.buildRequest(id);
 
         return RequestExecutor.executeRequest(request);
     }
@@ -40,7 +38,7 @@ public class Group {
                 .add("group_name", groupName)
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URL, requestBody, apiKey);
+        Request request = builder.buildRequestWithBody(requestBody);
 
         return RequestExecutor.executeRequest(request);
     }
@@ -51,14 +49,12 @@ public class Group {
                 .add("id", String.valueOf(id))
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithBody(URL, id, requestBody, apiKey);
-
+        Request request = builder.buildRequestWithBody(id, requestBody);
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody deleteGroup(int id) throws IOException{
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
-
+        Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }
 }
