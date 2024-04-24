@@ -2,7 +2,7 @@ package com.mnotify;
 
 
 public class ReportsAndStats {
-    String apiKey;
+    private final String apiKey;
 
     public ReportsAndStats(String apiKey) {
         this.apiKey = apiKey;

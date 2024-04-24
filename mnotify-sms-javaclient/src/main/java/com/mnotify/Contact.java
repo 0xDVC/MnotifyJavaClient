@@ -12,7 +12,7 @@ import okhttp3.*;
  * @author Neil Ohene on 2024-04-23
  */
 public class Contact {
-    private String apiKey;
+    private final String apiKey;
     private final String URL = URLDefinitions.CONTACT_ENDPOINT;
 
     public Contact(String apiKey) {
@@ -21,23 +21,20 @@ public class Contact {
 
     public ResponseBody getAllContacts() throws IOException {
         Request request = RequestBuilder.buildRequest(URL, apiKey);
-
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody getContact(int id) throws IOException {
         Request request = RequestBuilder.buildRequest(URL, id, apiKey);
-
         return RequestExecutor.executeRequest(request);
     }
     public ResponseBody getGroupContacts(int id) throws IOException {
         Request request = RequestBuilder.buildRequest(URL, id, apiKey);
-
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody addContact( int groupId, String phone, String title, String firstName, String lastName, String email, String dob) throws IOException {
-        RequestBody formBody = new FormBody.Builder()
+        RequestBody requestBody = new FormBody.Builder()
                 .add("phone", phone)
                 .add("title", title)
                 .add("firstname", firstName)
@@ -46,8 +43,7 @@ public class Contact {
                 .add("dob", dob)
                 .build();
 
-        Request request = RequestBuilder.buildRequest(URL, groupId, apiKey);
-
+        Request request = RequestBuilder.buildRequestWithBody(URL, groupId, requestBody, apiKey);
         return RequestExecutor.executeRequest(request);
     }
 
@@ -63,8 +59,7 @@ public class Contact {
                 .add("dob", dob)
                 .build();
 
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
-
+        Request request = RequestBuilder.buildRequestWithBody(URL, id, requestBody, apiKey);
         return RequestExecutor.executeRequest(request);
     }
 

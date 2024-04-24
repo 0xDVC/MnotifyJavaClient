@@ -28,7 +28,7 @@ public class RequestBuilder {
                 .build();
     }
 
-    public static Request buildRequest(String url, RequestBody requestBody, String apiKey) {
+    public static Request buildRequestWithBody(String url, RequestBody requestBody, String apiKey) {
         return new Request.Builder()
                 .url(url)
                 .addHeader("Content-Type", "application/json")
@@ -36,7 +36,7 @@ public class RequestBuilder {
                 .post(requestBody)
                 .build();
     }
-    public static Request buildRequestWithID(String url, int id, RequestBody requestBody, String apiKey) {
+    public static Request buildRequestWithBody(String url, int id, RequestBody requestBody, String apiKey) {
         return new Request.Builder()
                 .url(url + "/" + id)
                 .addHeader("Content-Type", "application/json")

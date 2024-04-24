@@ -16,7 +16,7 @@ import okhttp3.ResponseBody;
  */
 
 public class MessageTemplate {
-    private String apiKey;
+    private final String apiKey;
     private final String URL = URLDefinitions.MESSAGE_ENDPOINT;
 
 
@@ -39,12 +39,12 @@ public class MessageTemplate {
     }
 
     public ResponseBody addMessageTemplate(String title, String content) throws IOException {
-        RequestBody formBody = new FormBody.Builder()
+        RequestBody requestBody = new FormBody.Builder()
                 .add("title", title)
                 .add("content", content)
                 .build();
 
-        Request request = RequestBuilder.buildRequest(URL, formBody, apiKey);
+        Request request = RequestBuilder.buildRequestWithBody(URL, requestBody, apiKey);
 
         return RequestExecutor.executeRequest(request);
     }
@@ -56,13 +56,12 @@ public class MessageTemplate {
                 .add("id", String.valueOf(id))
                 .build();
 
-        Request request = RequestBuilder.buildRequestWithID(URL, id, requestBody, apiKey);
+        Request request = RequestBuilder.buildRequestWithBody(URL, id, requestBody, apiKey);
         return RequestExecutor.executeRequest(request);
     }
 
     public ResponseBody deleteMessageTemplate(int id) throws IOException{
         Request request = RequestBuilder.deleteRequest(URL, id, apiKey);
-
         return RequestExecutor.executeRequest(request);
     }
 

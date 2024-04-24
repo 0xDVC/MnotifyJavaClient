@@ -17,7 +17,7 @@ import okhttp3.ResponseBody;
  */
 
 public class Group {
-    private String apiKey;
+    private final String apiKey;
     private final String URL = URLDefinitions.GROUP_ENDPOINT;
 
 
@@ -38,11 +38,11 @@ public class Group {
     }
 
     public ResponseBody addGroup(String groupName) throws IOException {
-        RequestBody formBody = new FormBody.Builder()
+        RequestBody requestBody = new FormBody.Builder()
                 .add("group_name", groupName)
                 .build();
 
-        Request request = RequestBuilder.buildRequest(URL, apiKey);
+        Request request = RequestBuilder.buildRequestWithBody(URL, requestBody, apiKey);
 
         return RequestExecutor.executeRequest(request);
     }
@@ -53,7 +53,7 @@ public class Group {
                 .add("id", String.valueOf(id))
                 .build();
 
-        Request request = RequestBuilder.buildRequest(URL, id, apiKey);
+        Request request = RequestBuilder.buildRequestWithBody(URL, id, requestBody, apiKey);
 
         return RequestExecutor.executeRequest(request);
     }
