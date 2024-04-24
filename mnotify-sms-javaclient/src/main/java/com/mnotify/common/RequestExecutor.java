@@ -7,8 +7,20 @@ import okhttp3.ResponseBody;
 
 import java.io.IOException;
 
-public class RequestExecutor {
 
+/**
+ * A utility class for executing HTTP requests and building responses.
+ *
+ * @author Neil Ohene on 2024-04-23
+ */
+public class RequestExecutor {
+    /**
+     * Executes an HTTP request and returns the response body.
+     *
+     * @param request The HTTP request object.
+     * @return        The response body as a ResponseBody object.
+     * @throws IOException If the request fails or the response is not successful.
+     */
     public static ResponseBody executeRequest(Request request) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
