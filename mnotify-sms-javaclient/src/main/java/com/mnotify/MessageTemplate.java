@@ -11,8 +11,6 @@ import okhttp3.ResponseBody;
 /**
  * The MessageTemplate class provides methods to interact with the message templates API.
  * It allows users to retrieve, add, update, and delete message templates.
- *
- * @author Neil Ohene on 2024-04-23
  */
 
 public class MessageTemplate {

@@ -8,8 +8,6 @@ import okhttp3.*;
 /**
  * The Contact class provides methods to interact with the contacts API.
  * It allows users to retrieve, add, update, and delete contacts and contact groups.
- *
- * @author Neil Ohene on 2024-04-23
  */
 public class Contact {
     private final String apiKey;

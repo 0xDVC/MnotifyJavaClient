@@ -10,8 +10,6 @@ import java.io.IOException;
 
 /**
  * A utility class for executing HTTP requests and building responses.
- *
- * @author Neil Ohene on 2024-04-23
  */
 public class RequestExecutor {
     /**

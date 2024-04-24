@@ -5,8 +5,6 @@ import okhttp3.RequestBody;
 
 /**
  * A utility class for building HTTP requests.
- *
- * @author Neil Ohene on 2024-04-23
  */
 public class RequestBuilder {
     /**

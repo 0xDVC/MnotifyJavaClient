@@ -12,8 +12,6 @@ import okhttp3.ResponseBody;
 /**
  * The Group class provides methods to interact with the contact groups API.
  * It allows users to retrieve, add, update, and delete contact groups.
- *
- * @author Neil Ohene on 2024-04-23
  */
 
 public class Group {

@@ -17,8 +17,6 @@ import java.util.stream.Collectors;
 /**
  * The Campaign class provides methods to send Bulk SMS or Bulk Voice Call to individuals or groups.
  * Each campaign consists of both sending using quick or group.
- *
- * @author Neil Ohene on 2024-04-23
 **/
 
 public class Campaign {
