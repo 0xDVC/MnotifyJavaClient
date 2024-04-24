@@ -13,7 +13,7 @@ public class RequestBuilder {
 
     public static  Request buildRequest(String url, int id, String apiKey) {
         return new Request.Builder()
-                .url(url + id)
+                .url(url + "/" + id)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", apiKey)
                 .build();
@@ -21,7 +21,7 @@ public class RequestBuilder {
 
     public static  Request buildRequest(String url, int id1, int id2, String apiKey) {
         return new Request.Builder()
-                .url(url + id1 + id2)
+                .url(url + "/" + id1 + "/" + id2)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Authorization", apiKey)
                 .build();
