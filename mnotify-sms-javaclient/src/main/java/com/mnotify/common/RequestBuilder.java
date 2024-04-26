@@ -39,8 +39,19 @@ public class RequestBuilder {
      * @param id      The ID of the resource.
      * @return        The HTTP request object.
      */
-
     public Request buildRequest(int id) {
+        return builder
+                .url(URL + "/" + id)
+                .build();
+    }
+
+    /**
+     * Builds an HTTP request with the given URL, ID, and API key.
+     * @param id      The ID of the resource.
+     * @return        The HTTP request object.
+     */
+
+    public Request buildRequest(String id) {
         return builder
                 .url(URL + "/" + id)
                 .build();
