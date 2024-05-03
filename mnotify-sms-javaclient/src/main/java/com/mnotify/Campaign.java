@@ -9,8 +9,9 @@ import java.io.File;
 import java.io.IOException;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 /**
  * The Campaign class provides methods to send Bulk SMS or Bulk Voice Call to individuals or groups.
@@ -23,7 +24,7 @@ public class Campaign {
         builder = new RequestBuilder(API_KEY);
     }
 
-    public ResponseBody quickBulkSMS(List<String> recipients, String sender, String message, boolean isSchedule, LocalDateTime scheduledDate) throws IOException {
+    public ResponseBody quickBulkSMS(List<String> recipients, String sender, String message, boolean isSchedule, LocalDateTime scheduledDate) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("recipient", String.join(",", recipients))
                 .add("sender", sender)
@@ -37,7 +38,8 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody groupBulkSMS(List<String> groupIds, String sender, int messageID, boolean isSchedule, LocalDateTime scheduledDate) throws IOException {
+
+    public ResponseBody groupBulkSMS(List<String> groupIds, String sender, int messageID, boolean isSchedule, LocalDateTime scheduledDate) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("group_id", String.join(",", groupIds))
                 .add("sender", sender)
@@ -47,6 +49,7 @@ public class Campaign {
                 .build();
 
         Request request = builder.buildRequestWithBody(requestBody);
+
         return RequestExecutor.executeRequest(request);
     }
 
@@ -56,7 +59,7 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateScheduledSMS(int id, String sender, String message, LocalDateTime scheduledDateTime) throws IOException {
+    public ResponseBody updateScheduledSMS(int id, String sender, String message, LocalDateTime scheduledDateTime) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("sender", sender)
                 .add("message", message)
@@ -74,7 +77,7 @@ public class Campaign {
             String voiceId,
             boolean isSchedule,
             LocalDateTime scheduleDate
-    ) throws IOException {
+    ) {
 
         RequestBody fileBody = RequestBody.create(MediaType.parse(getMimeType(file.getName())), file);
 
@@ -102,7 +105,7 @@ public class Campaign {
             String voiceId,
             boolean isSchedule,
             LocalDateTime scheduleDate
-    ) throws IOException {
+    ) {
         RequestBody fileBody = RequestBody.create(MediaType.parse(getMimeType(file.getName())), file);
 
         MultipartBody multipartBody = new MultipartBody.Builder()
@@ -121,19 +124,18 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody senderIdRegistration(String sender, String purpose) throws IOException {
+    public ResponseBody senderIdRegistration(String sender, String purpose) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("sender_name", sender)
                 .add("purpose", purpose)
                 .build();
-
         builder.URL = URLDefinitions.SENDER_ID_REGISTRATION;
         Request request = builder.buildRequestWithBody(requestBody);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody checkSenderIdStatus(String sender) throws IOException {
+    public ResponseBody checkSenderIdStatus(String sender) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("sender_name", sender)
                 .build();

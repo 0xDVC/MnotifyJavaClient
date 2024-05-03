@@ -1,5 +1,6 @@
 package com.mnotify.common;
 
+import com.mnotify.MNotifyAPICallException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -17,17 +18,20 @@ public class RequestExecutor {
      *
      * @param request The HTTP request object.
      * @return        The response body as a ResponseBody object.
-     * @throws IOException If the request fails or the response is not successful.
+     * @throws MNotifyAPICallException If the request fails or the response is not successful.
      */
-    public static ResponseBody executeRequest(Request request) throws IOException {
+    public static ResponseBody executeRequest(Request request) {
         OkHttpClient client = new OkHttpClient();
 
         try (Response response = client.newCall(request).execute()) {
             if (response.isSuccessful()) {
                 return response.body();
             } else {
-                throw new IOException("Unexpected response code: " + response.code());
+                throw new MNotifyAPICallException("Unexpected response code: ", response.code());
             }
+        } catch(IOException e) {
+            throw new MNotifyAPICallException("Failed to make request: ", e);
         }
     }
+
 }
