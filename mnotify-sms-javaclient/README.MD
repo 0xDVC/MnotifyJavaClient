@@ -9,16 +9,21 @@
     │   ├── java
     │   │   └── com
     │   │       └── mnotify
-    │   │           ├── Campaign.java
-    │   │           ├── Contact.java
-    │   │           ├── Group.java
-    │   │           ├── MessageTemplate.java
-    │   │           ├── ReportsAndStats.java
+    │   │           ├── MnotifyClient.java
+    │   │           ├── MnotifyClientConfiguration.java
     │   │           ├── common
     │   │           │   ├── RequestBuilder.java
     │   │           │   └── RequestExecutor.java
-    │   │           └── constants
-    │   │               └── URLDefinitions.java
+    │   │           ├── constants
+    │   │           │   └── URLDefinitions.java
+    │   │           ├── definitions
+    │   │           │   ├── Campaign.java
+    │   │           │   ├── Contact.java
+    │   │           │   ├── Group.java
+    │   │           │   ├── MessageTemplate.java
+    │   │           │   └── ReportsAndStats.java
+    │   │           └── exception
+    │   │               └── MNotifyAPICallException.java
     │   └── resources
     └── test
         └── java
