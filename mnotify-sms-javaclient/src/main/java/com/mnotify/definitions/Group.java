@@ -1,4 +1,4 @@
-package com.mnotify;
+package com.mnotify.definitions;
 
 import com.mnotify.common.RequestBuilder;
 import com.mnotify.common.RequestExecutor;

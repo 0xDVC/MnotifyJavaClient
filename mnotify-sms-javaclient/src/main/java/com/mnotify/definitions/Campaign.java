@@ -1,4 +1,4 @@
-package com.mnotify;
+package com.mnotify.definitions;
 
 import com.mnotify.common.RequestBuilder;
 import com.mnotify.common.RequestExecutor;
@@ -6,7 +6,6 @@ import com.mnotify.constants.URLDefinitions;
 import okhttp3.*;
 
 import java.io.File;
-import java.io.IOException;
 
 import java.time.LocalDateTime;
 

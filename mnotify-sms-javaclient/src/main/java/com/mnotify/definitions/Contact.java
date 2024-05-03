@@ -1,4 +1,4 @@
-package com.mnotify;
+package com.mnotify.definitions;
 
 import com.mnotify.common.*;
 import com.mnotify.constants.URLDefinitions;
