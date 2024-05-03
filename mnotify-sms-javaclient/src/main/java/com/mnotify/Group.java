@@ -2,7 +2,6 @@ package com.mnotify;
 
 import com.mnotify.common.RequestBuilder;
 import com.mnotify.common.RequestExecutor;
-import java.io.IOException;
 import com.mnotify.constants.URLDefinitions;
 import okhttp3.FormBody;
 import okhttp3.Request;
@@ -22,18 +21,18 @@ public class Group {
         builder = new RequestBuilder(API_KEY, URLDefinitions.GROUP_ENDPOINT);
     }
 
-    public ResponseBody getAllGroups() throws IOException {
+    public ResponseBody getAllGroups() {
         Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody getGroup(int id) throws IOException {
+    public ResponseBody getGroup(int id) {
         Request request = builder.buildRequest(id);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody addGroup(String groupName) throws IOException {
+    public ResponseBody addGroup(String groupName) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("group_name", groupName)
                 .build();
@@ -43,7 +42,7 @@ public class Group {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateGroup(int id, String groupName) throws IOException {
+    public ResponseBody updateGroup(int id, String groupName) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("group_name", groupName)
                 .add("id", String.valueOf(id))
@@ -53,7 +52,7 @@ public class Group {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody deleteGroup(int id) throws IOException{
+    public ResponseBody deleteGroup(int id) {
         Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }

@@ -1,7 +1,6 @@
 package com.mnotify;
 
 import com.mnotify.common.*;
-import java.io.IOException;
 import com.mnotify.constants.URLDefinitions;
 import okhttp3.FormBody;
 import okhttp3.Request;
@@ -21,18 +20,18 @@ public class MessageTemplate {
         builder = new RequestBuilder(API_KEY, URLDefinitions.MESSAGE_ENDPOINT);
     }
 
-    public ResponseBody getAllMessageTemplates() throws IOException {
+    public ResponseBody getAllMessageTemplates() {
         Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
 
-    public ResponseBody getMessageTemplate(int id) throws IOException {
+    public ResponseBody getMessageTemplate(int id) {
         Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody addMessageTemplate(String title, String content) throws IOException {
+    public ResponseBody addMessageTemplate(String title, String content) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("title", title)
                 .add("content", content)
@@ -42,7 +41,7 @@ public class MessageTemplate {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateMessageTemplate(int id, String title, String content) throws IOException{
+    public ResponseBody updateMessageTemplate(int id, String title, String content) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("title", title)
                 .add("content", content)
@@ -53,7 +52,7 @@ public class MessageTemplate {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody deleteMessageTemplate(int id) throws IOException{
+    public ResponseBody deleteMessageTemplate(int id) {
         Request request = builder.deleteRequest(id);
         return RequestExecutor.executeRequest(request);
     }

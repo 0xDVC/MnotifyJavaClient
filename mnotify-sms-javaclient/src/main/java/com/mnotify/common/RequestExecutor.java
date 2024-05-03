@@ -1,6 +1,6 @@
 package com.mnotify.common;
 
-import com.mnotify.MNotifyAPICallException;
+import com.mnotify.exception.MNotifyAPICallException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

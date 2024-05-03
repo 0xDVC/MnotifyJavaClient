@@ -1,4 +1,4 @@
-package com.mnotify;
+package com.mnotify.exception;
 
 public class MNotifyAPICallException extends RuntimeException{
     public MNotifyAPICallException(String message, Exception exc) {
