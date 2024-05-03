@@ -28,7 +28,13 @@ public class Contact {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody addContact( int groupId, String phone, String title, String firstName, String lastName, String email, String dob) {
+    public ResponseBody addContact( int groupId,
+                                    String phone,
+                                    String title,
+                                    String firstName,
+                                    String lastName,
+                                    String email,
+                                    String dob) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("phone", phone)
                 .add("title", title)
@@ -42,7 +48,14 @@ public class Contact {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateContact(int id, int groupId, String phone, String title, String firstName, String lastName, String email, String dob) {
+    public ResponseBody updateContact(int id,
+                                      int groupId,
+                                      String phone,
+                                      String title,
+                                      String firstName,
+                                      String lastName,
+                                      String email,
+                                      String dob) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("id", String.valueOf(id))
                 .add("group_id", String.valueOf(groupId))

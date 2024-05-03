@@ -32,6 +32,6 @@ public class RequestExecutor {
         } catch(IOException e) {
             throw new MNotifyAPICallException("Failed to make request: ", e);
         }
-    }
+    }`
 
 }

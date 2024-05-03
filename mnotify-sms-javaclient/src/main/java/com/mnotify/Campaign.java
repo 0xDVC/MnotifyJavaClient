@@ -24,7 +24,11 @@ public class Campaign {
         builder = new RequestBuilder(API_KEY);
     }
 
-    public ResponseBody quickBulkSMS(List<String> recipients, String sender, String message, boolean isSchedule, LocalDateTime scheduledDate) {
+    public ResponseBody quickBulkSMS(List<String> recipients,
+                                     String sender,
+                                     String message,
+                                     boolean isSchedule,
+                                     LocalDateTime scheduledDate) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("recipient", String.join(",", recipients))
                 .add("sender", sender)
@@ -39,7 +43,12 @@ public class Campaign {
     }
 
 
-    public ResponseBody groupBulkSMS(List<String> groupIds, String sender, int messageID, boolean isSchedule, LocalDateTime scheduledDate) {
+    public ResponseBody groupBulkSMS(List<String> groupIds,
+                                     String sender,
+                                     int messageID,
+                                     boolean isSchedule,
+                                     LocalDateTime scheduledDate) {
+
         RequestBody requestBody = new FormBody.Builder()
                 .add("group_id", String.join(",", groupIds))
                 .add("sender", sender)
@@ -53,13 +62,16 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody scheduledSMS() throws IOException {
+    public ResponseBody scheduledSMS() {
         builder.URL = URLDefinitions.SCHEDULED_SMS;
         Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateScheduledSMS(int id, String sender, String message, LocalDateTime scheduledDateTime) {
+    public ResponseBody updateScheduledSMS(int id,
+                                           String sender,
+                                           String message,
+                                           LocalDateTime scheduledDateTime) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("sender", sender)
                 .add("message", message)
@@ -76,8 +88,7 @@ public class Campaign {
             File file,
             String voiceId,
             boolean isSchedule,
-            LocalDateTime scheduleDate
-    ) {
+            LocalDateTime scheduleDate) {
 
         RequestBody fileBody = RequestBody.create(MediaType.parse(getMimeType(file.getName())), file);
 
@@ -104,8 +115,7 @@ public class Campaign {
             File file,
             String voiceId,
             boolean isSchedule,
-            LocalDateTime scheduleDate
-    ) {
+            LocalDateTime scheduleDate) {
         RequestBody fileBody = RequestBody.create(MediaType.parse(getMimeType(file.getName())), file);
 
         MultipartBody multipartBody = new MultipartBody.Builder()
