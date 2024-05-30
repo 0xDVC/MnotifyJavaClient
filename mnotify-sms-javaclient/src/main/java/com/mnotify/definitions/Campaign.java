@@ -7,7 +7,6 @@ import com.mnotify.constants.URLDefinitions;
 import okhttp3.*;
 
 import java.io.File;
-
 import java.time.LocalDateTime;
 
 import java.util.List;
@@ -37,7 +36,7 @@ public class Campaign {
                 .add("scheduled_date", String.valueOf(scheduledDate))
                 .build();
 
-        builder.URL = URLDefinitions.QUICK_BULK_SMS;
+        RequestBuilder.URL = URLDefinitions.QUICK_BULK_SMS;
         Request request = builder.buildRequestWithBody(requestBody);
         return RequestExecutor.executeRequest(request);
     }
@@ -63,7 +62,7 @@ public class Campaign {
     }
 
     public JsonElement scheduledSMS() {
-        builder.URL = URLDefinitions.SCHEDULED_SMS;
+        RequestBuilder.URL = URLDefinitions.SCHEDULED_SMS;
         Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
@@ -102,7 +101,7 @@ public class Campaign {
                 .addFormDataPart("schedule_date", scheduleDate.toString())
                 .build();
 
-        builder.URL = URLDefinitions.QUICK_BULK_VOICE_CALL;
+        RequestBuilder.URL = URLDefinitions.QUICK_BULK_VOICE_CALL;
         Request request = builder.buildRequestWithBody(multipartBody);
 
         return RequestExecutor.executeRequest(request);
@@ -128,7 +127,7 @@ public class Campaign {
                 .addFormDataPart("schedule_date", scheduleDate.toString())
                 .build();
 
-        builder.URL = URLDefinitions.GROUP_BULK_VOICE_CALL;
+        RequestBuilder.URL = URLDefinitions.GROUP_BULK_VOICE_CALL;
         Request request = builder.buildRequestWithBody(multipartBody);
 
         return RequestExecutor.executeRequest(request);
@@ -139,7 +138,7 @@ public class Campaign {
                 .add("sender_name", sender)
                 .add("purpose", purpose)
                 .build();
-        builder.URL = URLDefinitions.SENDER_ID_REGISTRATION;
+        RequestBuilder.URL = URLDefinitions.SENDER_ID_REGISTRATION;
         Request request = builder.buildRequestWithBody(requestBody);
 
         return RequestExecutor.executeRequest(request);
@@ -150,7 +149,7 @@ public class Campaign {
                 .add("sender_name", sender)
                 .build();
 
-        builder.URL = URLDefinitions.SENDER_ID_STATUS;
+        RequestBuilder.URL = URLDefinitions.SENDER_ID_STATUS;
         Request request = builder.buildRequestWithBody(requestBody);
 
         return RequestExecutor.executeRequest(request);

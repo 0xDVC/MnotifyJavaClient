@@ -12,6 +12,7 @@ import okhttp3.*;
 @SuppressWarnings(value = "unused")
 public class Contact {
     RequestBuilder builder;
+
     public Contact() {
         builder = new RequestBuilder(URLDefinitions.CONTACT_ENDPOINT);
     }

@@ -1,7 +1,7 @@
 package com.mnotify;
 
 final class MnotifyClientConfiguration {
-    public static MnotifyClient buildClientFrom(String secretKey) {
-        return new MnotifyClient.Impl(secretKey);
+    public static MnotifyClient buildClientFrom(String apiKey) {
+        return new MnotifyClient.Impl(apiKey);
     }
 }
