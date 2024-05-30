@@ -1,5 +1,6 @@
 package com.mnotify.definitions;
 
+import com.google.gson.JsonElement;
 import com.mnotify.common.*;
 import com.mnotify.constants.URLDefinitions;
 import okhttp3.*;
@@ -8,27 +9,28 @@ import okhttp3.*;
  * The Contact class provides methods to interact with the contacts API.
  * It allows users to retrieve, add, update, and delete contacts and contact groups.
  */
+@SuppressWarnings(value = "unused")
 public class Contact {
     RequestBuilder builder;
-    public Contact(String API_KEY) {
-        builder = new RequestBuilder(API_KEY, URLDefinitions.CONTACT_ENDPOINT);
+    public Contact() {
+        builder = new RequestBuilder(URLDefinitions.CONTACT_ENDPOINT);
     }
 
-    public ResponseBody getAllContacts() {
+    public JsonElement getAllContacts() {
         Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody getContact(int id) {
+    public JsonElement getContact(int id) {
         Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }
-    public ResponseBody getGroupContacts(int id) {
+    public JsonElement getGroupContacts(int id) {
         Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody addContact( int groupId,
+    public JsonElement addContact( int groupId,
                                     String phone,
                                     String title,
                                     String firstName,
@@ -48,7 +50,7 @@ public class Contact {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateContact(int id,
+    public JsonElement updateContact(int id,
                                       int groupId,
                                       String phone,
                                       String title,
@@ -71,7 +73,7 @@ public class Contact {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody deleteContact(int id, int groupId) {
+    public JsonElement deleteContact(int id, int groupId) {
         Request request = builder.deleteRequest(id, groupId);
         return RequestExecutor.executeRequest(request);
     }

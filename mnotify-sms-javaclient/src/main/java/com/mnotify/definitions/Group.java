@@ -6,33 +6,32 @@ import com.mnotify.constants.URLDefinitions;
 import okhttp3.FormBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
+import com.google.gson.JsonElement;
 
 /**
  * The Group class provides methods to interact with the contact groups API.
  * It allows users to retrieve, add, update, and delete contact groups.
  */
-
+@SuppressWarnings(value = "unused")
 public class Group {
-
     RequestBuilder builder;
 
-    public Group(String API_KEY) {
-        builder = new RequestBuilder(API_KEY, URLDefinitions.GROUP_ENDPOINT);
+    public Group() {
+        builder = new RequestBuilder(URLDefinitions.GROUP_ENDPOINT);
     }
 
-    public ResponseBody getAllGroups() {
+    public JsonElement getAllGroups() {
         Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody getGroup(int id) {
+    public JsonElement getGroup(int id) {
         Request request = builder.buildRequest(id);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody addGroup(String groupName) {
+    public JsonElement addGroup(String groupName) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("group_name", groupName)
                 .build();
@@ -42,7 +41,7 @@ public class Group {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateGroup(int id, String groupName) {
+    public JsonElement updateGroup(int id, String groupName) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("group_name", groupName)
                 .add("id", String.valueOf(id))
@@ -52,7 +51,7 @@ public class Group {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody deleteGroup(int id) {
+    public JsonElement deleteGroup(int id) {
         Request request = builder.buildRequest(id);
         return RequestExecutor.executeRequest(request);
     }

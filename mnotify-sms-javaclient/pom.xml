@@ -24,6 +24,8 @@
             <version>4.12.0</version>
         </dependency>
 
+    // Jackson?? or GSON??
+
     </dependencies>
 
 </project>

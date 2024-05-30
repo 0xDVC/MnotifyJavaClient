@@ -10,18 +10,13 @@ public class RequestBuilder {
     private final Request.Builder builder;
     public static String URL;
 
-    public RequestBuilder(String API_KEY) {
-        builder = new Request.Builder()
-                .addHeader("Authorization", API_KEY)
-                .addHeader("Content-Type", "application/json");
+    public RequestBuilder() {
+        builder = new Request.Builder();
     }
 
-    public RequestBuilder(String API_KEY, String URL) {
-        builder = new Request.Builder()
-                .addHeader("Authorization", API_KEY)
-                .addHeader("Content-Type", "application/json");
-
-        this.URL = URL;
+    public RequestBuilder(String URL) {
+        builder = new Request.Builder();
+        RequestBuilder.URL = URL;
     }
     /**
      * Builds an HTTP request with the given URL and API key.

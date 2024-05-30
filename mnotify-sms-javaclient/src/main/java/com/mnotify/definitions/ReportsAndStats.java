@@ -5,70 +5,70 @@ import com.mnotify.common.RequestBuilder;
 import com.mnotify.common.RequestExecutor;
 import com.mnotify.constants.URLDefinitions;
 import okhttp3.Request;
-import okhttp3.ResponseBody;
+import com.google.gson.JsonElement;
 
 /**
  * The ReportsAndStats class provides methods to interact with the report and stats templates API.
  * It allows users to retrieve report and statistics on sms and voice calls.
  */
-
+@SuppressWarnings(value = "unused")
 public class ReportsAndStats {
     RequestBuilder builder;
-    public ReportsAndStats(String API_KEY) {
-        builder = new RequestBuilder(API_KEY);
+    public ReportsAndStats() {
+        builder = new RequestBuilder();
     }
 
-    public ResponseBody checkSMSBalance() {
-        builder.URL = URLDefinitions.SMS_BALANCE;
+    public JsonElement checkSMSBalance() {
+        RequestBuilder.URL = URLDefinitions.SMS_BALANCE;
         Request request = builder.buildRequest();
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody checkVoiceBalance() {
-        builder.URL = URLDefinitions.VOICE_BALANCE;
+    public JsonElement checkVoiceBalance() {
+        RequestBuilder.URL = URLDefinitions.VOICE_BALANCE;
         Request request = builder.buildRequest();
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody smsDeliveryReport(String id) {
-        builder.URL = URLDefinitions.SMS_DELIVERY_REPORT;
+    public JsonElement smsDeliveryReport(String id) {
+        RequestBuilder.URL = URLDefinitions.SMS_DELIVERY_REPORT;
         Request request  = builder.buildRequest(id);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody specificSMSDeliveryReport(int id) {
-        builder.URL = URLDefinitions.SPECIFIC_SMS_DELIVERY_REPORT;
+    public JsonElement specificSMSDeliveryReport(int id) {
+        RequestBuilder.URL = URLDefinitions.SPECIFIC_SMS_DELIVERY_REPORT;
         Request request = builder.buildRequest(id);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody periodicDeliveryReport() {
-        builder.URL = URLDefinitions.PERIODIC_DELIVERY_REPORT;
+    public JsonElement periodicDeliveryReport() {
+        RequestBuilder.URL = URLDefinitions.PERIODIC_DELIVERY_REPORT;
         Request request = builder.buildRequest();
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody voiceCallReport(String id) {
-        builder.URL = URLDefinitions.VOICE_CALL_REPORT;
+    public JsonElement voiceCallReport(String id) {
+        RequestBuilder.URL = URLDefinitions.VOICE_CALL_REPORT;
         Request request  = builder.buildRequest(id);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody specificVoiceCallReport(int id) {
-        builder.URL = URLDefinitions.SPECIFIC_VOICE_CALL_REPORT;
+    public JsonElement specificVoiceCallReport(int id) {
+        RequestBuilder.URL = URLDefinitions.SPECIFIC_VOICE_CALL_REPORT;
         Request request = builder.buildRequest(id);
 
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody periodicVoiceCallReport() {
-        builder.URL = URLDefinitions.PERIODIC_VOICE_CALL_REPORT;
+    public JsonElement periodicVoiceCallReport() {
+        RequestBuilder.URL = URLDefinitions.PERIODIC_VOICE_CALL_REPORT;
         Request request = builder.buildRequest();
 
         return RequestExecutor.executeRequest(request);

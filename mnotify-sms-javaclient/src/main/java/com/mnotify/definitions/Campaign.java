@@ -1,5 +1,6 @@
 package com.mnotify.definitions;
 
+import com.google.gson.JsonElement;
 import com.mnotify.common.RequestBuilder;
 import com.mnotify.common.RequestExecutor;
 import com.mnotify.constants.URLDefinitions;
@@ -16,18 +17,18 @@ import java.util.List;
  * The Campaign class provides methods to send Bulk SMS or Bulk Voice Call to individuals or groups.
  * Each campaign consists of both sending using quick or group.
 **/
-
+@SuppressWarnings(value = "unused")
 public class Campaign {
     RequestBuilder builder;
-    public Campaign(String API_KEY) {
-        builder = new RequestBuilder(API_KEY);
+    public Campaign() {
+        builder = new RequestBuilder();
     }
 
-    public ResponseBody quickBulkSMS(List<String> recipients,
-                                     String sender,
-                                     String message,
-                                     boolean isSchedule,
-                                     LocalDateTime scheduledDate) {
+    public JsonElement quickBulkSMS(List<String> recipients,
+                                    String sender,
+                                    String message,
+                                    boolean isSchedule,
+                                    LocalDateTime scheduledDate) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("recipient", String.join(",", recipients))
                 .add("sender", sender)
@@ -42,7 +43,7 @@ public class Campaign {
     }
 
 
-    public ResponseBody groupBulkSMS(List<String> groupIds,
+    public JsonElement groupBulkSMS(List<String> groupIds,
                                      String sender,
                                      int messageID,
                                      boolean isSchedule,
@@ -61,13 +62,13 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody scheduledSMS() {
+    public JsonElement scheduledSMS() {
         builder.URL = URLDefinitions.SCHEDULED_SMS;
         Request request = builder.buildRequest();
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody updateScheduledSMS(int id,
+    public JsonElement updateScheduledSMS(int id,
                                            String sender,
                                            String message,
                                            LocalDateTime scheduledDateTime) {
@@ -81,7 +82,7 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody quickBulkVoiceCall(
+    public JsonElement quickBulkVoiceCall(
             String campaign,
             List<String> recipients,
             File file,
@@ -108,7 +109,7 @@ public class Campaign {
 
     }
 
-    public ResponseBody groupBulkVoiceCall(
+    public JsonElement groupBulkVoiceCall(
             String campaign,
             List<String> groupIds,
             File file,
@@ -133,7 +134,7 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody senderIdRegistration(String sender, String purpose) {
+    public JsonElement senderIdRegistration(String sender, String purpose) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("sender_name", sender)
                 .add("purpose", purpose)
@@ -144,7 +145,7 @@ public class Campaign {
         return RequestExecutor.executeRequest(request);
     }
 
-    public ResponseBody checkSenderIdStatus(String sender) {
+    public JsonElement checkSenderIdStatus(String sender) {
         RequestBody requestBody = new FormBody.Builder()
                 .add("sender_name", sender)
                 .build();
