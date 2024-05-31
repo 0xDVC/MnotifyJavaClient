@@ -15,6 +15,7 @@ import java.io.IOException;
  * A utility class for executing HTTP requests and building responses.
  */
 public class RequestExecutor {
+
     private static final OkHttpClient client = new OkHttpClient();
     private static String apiKey;
 
