@@ -56,6 +56,7 @@ public class Campaign {
                 .add("scheduled_date", String.valueOf(scheduledDate))
                 .build();
 
+        RequestBuilder.URL = URLDefinitions.GROUP_BULK_SMS;
         Request request = builder.buildRequestWithBody(requestBody);
 
         return RequestExecutor.executeRequest(request);
@@ -77,6 +78,7 @@ public class Campaign {
                 .add("scheduled_date", String.valueOf(scheduledDateTime))
                 .build();
 
+        RequestBuilder.URL = URLDefinitions.SCHEDULED_SMS;
         Request request = builder.buildRequestWithBody(id, requestBody);
         return RequestExecutor.executeRequest(request);
     }
