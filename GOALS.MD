@@ -3,13 +3,13 @@ The major goal here is to port all [MNotify's APIs](https://readthedocs.mnotify.
 
 The following are things this project hopes to achieve along the line:
 
-- [ ] Model all Mnotify's BMS Request and Response Objects
+- [x] Model all Mnotify's BMS Request and Response Objects
   - [x] Message template
   - [x] Group
   - [x] Contact
-  - [ ] Campaign
-  - [ ] Reports and Stats
-  - [ ] Miscellaneous
+  - [x] Campaign
+  - [x] Reports and Stats
+  - [x] Miscellaneous
   
 - [ ] Unit Tests
 - [ ] Spring Boot Starter for the client built above
